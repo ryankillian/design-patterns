@@ -3,9 +3,7 @@ interface Door {
   getWidth(): number;
 }
 class WoodenDoor implements Door {
-  width: number;
-  height: number;
-  constructor(width: number, height: number) {
+  constructor(public width: number, public height: number) {
     this.width = width;
     this.height = height;
   }

@@ -1,9 +1,9 @@
 class Burger {
-  size: number;
-  cheese: boolean;
-  lettuce: boolean;
-  ketchup: boolean;
-  pickle: boolean;
+  readonly size: number;
+  readonly cheese: boolean;
+  readonly lettuce: boolean;
+  readonly ketchup: boolean;
+  readonly pickle: boolean;
 
   constructor(builder: BurgerBuilder) {
     this.size = builder.size;
@@ -14,32 +14,33 @@ class Burger {
   }
 }
 class BurgerBuilder {
-  size: number;
+  readonly size: number;
   cheese = false;
   lettuce = false;
   ketchup = false;
   pickle = false;
+
   constructor(size: number) {
     this.size = size;
   }
-  addCheese() {
+  addCheese(): BurgerBuilder {
     this.cheese = true;
     return this;
   }
-  addLettuce() {
+  addLettuce(): BurgerBuilder {
     this.lettuce = true;
     return this;
   }
-  addKetchup() {
+  addKetchup(): BurgerBuilder {
     this.ketchup = true;
     return this;
   }
-  addPickle() {
+  addPickle(): BurgerBuilder {
     this.pickle = true;
     return this;
   }
 
-  build() {
+  build(): Burger {
     return new Burger(this);
   }
 }
