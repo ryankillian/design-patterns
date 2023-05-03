@@ -1,1 +1,1 @@
-# Classis Design Patterns in Typescript
+# Classic Design Patterns in Typescript
