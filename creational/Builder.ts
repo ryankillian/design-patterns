@@ -44,8 +44,6 @@ class BurgerBuilder {
   }
 }
 
-let burger = new Burger(
-  new BurgerBuilder(12).addCheese().addKetchup().addPickle()
-);
+let burger = new BurgerBuilder(12).addCheese().addKetchup().addPickle().build();
 console.log(burger.lettuce);
 console.log(burger.pickle);
