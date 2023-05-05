@@ -1,9 +1,5 @@
 /*
 
-what would be good examples of the Mediator design pattern?
-
-can you give a simple, clear and memorable example of the Mediator design pattern in Typescript ?
-
 The Mediator pattern promotes a "many-to-many relationship network" to "full object status". It's a behavioral design pattern that encapsulates how a set of objects interact. Here are some examples where the Mediator pattern might be applicable:
 
 Chat room: As in the example I just gave, a chat room can act as a mediator between multiple users, handling messages and distributing them appropriately.
