@@ -26,8 +26,7 @@ It's worth noting that understanding the principles behind the patterns (like en
 
 It's challenging to rank the Gang of Four Design Patterns by importance because their relevance and usefulness depend on the specific problem you're trying to solve. However, I can provide a list of the patterns and group them into three tiers based on their general applicability in software development. Keep in mind that this is just a rough guideline, and a pattern's importance may vary depending on your project.
 
-Tier 1 (Most Commonly Used):
-
+###Tier 1 (Most Commonly Used):
 Singleton
 Factory Method
 Abstract Factory
@@ -44,7 +43,7 @@ Observer
 Strategy
 Template Method
 
-Tier 2 (Less Commonly Used, but Still Important):
+###Tier 2 (Less Commonly Used, but Still Important):
 Chain of Responsibility
 Command
 Iterator
@@ -53,7 +52,7 @@ Memento
 State
 Visitor
 
-Tier 3 (Least Commonly Used or More Niche in Application):
+###Tier 3 (Least Commonly Used or More Niche in Application):
 Interpreter
 
 Remember, the importance of a design pattern is dictated by the context in which it's used. So, it's essential to familiarize yourself with various patterns and understand when to apply them based on the specific problem you're trying to solve.
