@@ -107,3 +107,68 @@ remote.pressButton(); // Output: Door is open
 
 remote.setCommand(doorClose);
 remote.pressButton(); // Output: Door is closed
+
+/*
+
+
+To implement undo and redo functionality with the Command design pattern, you can extend your Command interface and the specific command classes to support these operations. Additionally, you need to maintain a history of commands to keep track of the performed actions. Here's an example:
+
+The Invoker class now maintains a history of executed commands and their positions. The undo and redo methods call the corresponding methods on the command instances. The command classes themselves handle the actual undo and redo logic by reverting or re-applying the performed actions.
+
+Remember that not all commands may be undoable or redoable, so you might need to adapt this example to accommodate such cases. You can also consider implementing different command interfaces or abstract classes for undoable and non-undoable commands if needed.
+
+*/
+
+// interface Command {
+//   execute(): void;
+//   undo(): void;
+//   redo(): void;
+// }
+
+// class ConcreteCommand implements Command {
+//   constructor(private receiver: Receiver) {}
+
+//   execute() {
+//     this.receiver.performAction();
+//   }
+
+//   undo() {
+//     this.receiver.reverseAction();
+//   }
+
+//   redo() {
+//     this.receiver.performAction();
+//   }
+// }
+
+// class Invoker {
+//   private history: Command[] = [];
+//   private currentPosition: number = -1;
+
+//   executeCommand(command: Command) {
+//     command.execute();
+//     this.history = this.history.slice(0, this.currentPosition + 1);
+//     this.history.push(command);
+//     this.currentPosition++;
+//   }
+
+//   undo() {
+//     if (this.currentPosition < 0) {
+//       console.log("Nothing to undo.");
+//       return;
+//     }
+
+//     this.history[this.currentPosition].undo();
+//     this.currentPosition--;
+//   }
+
+//   redo() {
+//     if (this.currentPosition >= this.history.length - 1) {
+//       console.log("Nothing to redo.");
+//       return;
+//     }
+
+//     this.currentPosition++;
+//     this.history[this.currentPosition].redo();
+//   }
+// }
