@@ -18,6 +18,107 @@ These examples demonstrate various use cases where the Proxy design pattern can 
 
 */
 
+/*
+
+The Proxy design pattern is a structural design pattern that involves a set of objects that represent another object called the "subject." The proxy objects act as an intermediary between a client and the subject, controlling or enhancing the access to the subject. The proxy pattern is useful when direct access to the subject is impractical or undesirable for various reasons, such as performance, security, or complexity.
+
+There are several types of proxies, including:
+
+Virtual Proxy: This type of proxy delays the creation or loading of an expensive resource until it is actually needed. This is useful when working with large objects that consume a lot of memory or take a long time to load.
+
+Remote Proxy: This proxy provides a local representation of a remote object. It allows communication between objects residing in different address spaces, such as across a network or the internet.
+
+Protective Proxy: This proxy controls access to a sensitive object by performing authentication or authorization checks before allowing access to the subject.
+
+Smart Reference Proxy: This proxy can add additional functionality or behavior to an object, such as reference counting, caching, or logging, without affecting the subject's core functionality.
+
+The Proxy pattern involves the following components:
+
+Subject: This is an interface that defines the common interface for the RealSubject and the Proxy classes.
+RealSubject: This is the actual object that the Proxy represents and that the client wants to interact with.
+Proxy: This class implements the Subject interface and maintains a reference to the RealSubject. It can control access to the RealSubject or add additional behavior as needed.
+The client interacts with the Proxy object, which, in turn, forwards calls to the RealSubject as necessary. The client may not even be aware that it's interacting with a proxy instead of the actual object.
+
+*/
+
+// Subject Interface
+interface BankAccount {
+  deposit(amount: number): void;
+  withdraw(amount: number): void;
+  getBalance(): number;
+}
+
+// RealSubject
+class RealBankAccount implements BankAccount {
+  private balance: number = 0;
+
+  deposit(amount: number): void {
+    this.balance += amount;
+  }
+
+  withdraw(amount: number): void {
+    if (amount <= this.balance) {
+      this.balance -= amount;
+    } else {
+      console.log("Insufficient funds.");
+    }
+  }
+
+  getBalance(): number {
+    return this.balance;
+  }
+}
+
+// Proxy
+class BankAccountProxy implements BankAccount {
+  private realBankAccount: RealBankAccount = new RealBankAccount();
+
+  constructor(private pin: string, private enteredPin: string) {}
+
+  private isAuthenticated(): boolean {
+    return this.pin === this.enteredPin;
+  }
+
+  deposit(amount: number): void {
+    if (this.isAuthenticated()) {
+      this.realBankAccount.deposit(amount);
+    } else {
+      console.log("Invalid PIN. Access denied.");
+    }
+  }
+
+  withdraw(amount: number): void {
+    if (this.isAuthenticated()) {
+      this.realBankAccount.withdraw(amount);
+    } else {
+      console.log("Invalid PIN. Access denied.");
+    }
+  }
+
+  getBalance(): number {
+    if (this.isAuthenticated()) {
+      return this.realBankAccount.getBalance();
+    } else {
+      console.log("Invalid PIN. Access denied.");
+      return 0;
+    }
+  }
+}
+
+// Client code
+const pin = "1234";
+const account = new BankAccountProxy(pin, "1111");
+
+account.deposit(100); // Invalid PIN. Access denied.
+account.withdraw(50); // Invalid PIN. Access denied.
+console.log(account.getBalance()); // Invalid PIN. Access denied. 0
+
+const correctPinAccount = new BankAccountProxy(pin, pin);
+correctPinAccount.deposit(100); // Deposit successful
+correctPinAccount.withdraw(50); // Withdrawal successful
+console.log(correctPinAccount.getBalance()); // 50
+
+/*
 interface BankAccount {
   deposit(amount: number): void;
   withdraw(amount: number): boolean;
@@ -91,3 +192,5 @@ function main() {
 }
 
 main();
+
+*/

@@ -23,6 +23,9 @@ The memory footprint of each object is significant.
 Most of the object's data can be made extrinsic (shared data).
 A good example of the Flyweight pattern is a text editor. Suppose you want to create a text editor that can handle documents with millions of characters, and you want to store the formatting attributes (like font, color, size, etc.) for each character. Storing formatting attributes for each character would consume a lot of memory. The Flyweight pattern can help you optimize the memory usage by sharing formatting attributes among characters.
 
+In this example, we have a TreeType interface representing the Flyweight, and a ConcreteTreeType class implementing it. The TreeTypeFactory manages the creation and sharing of tree types. The client, in this case, the Tree class, holds the extrinsic data (position and size) and uses the flyweight objects for the intrinsic data (texture and color).
+
+This implementation helps to save memory by sharing the common intrinsic data (tree texture and color) among multiple tree instances.
 */
 
 // Flyweight interface
